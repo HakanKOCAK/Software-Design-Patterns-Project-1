@@ -78,10 +78,23 @@ public class Main {
         if(user.getFood().toArray().length > 0){
             System.out.println("\nOrder Details\n-------------------\n");
             Map<String, Float> details = user.getBill().getDetails();
+
+            float pizzaPrice = new Pizza().getPrice();
+            float hamburgerPrice = new Hamburger().getPrice();
+            float friesPrice = new Fries().getPrice();
             for(Map.Entry<String, Float> entry: details.entrySet()){
-                System.out.println(entry.getKey() + ": " + entry.getValue());
+                float price = 0;
+                if (entry.getKey().equalsIgnoreCase("pizza")){
+                    price = pizzaPrice;
+                } else if (entry.getKey().equalsIgnoreCase("fries")){
+                    price = friesPrice;
+                } else {
+                    price = hamburgerPrice;
+                }
+                int count = (int) (entry.getValue()/price);
+                System.out.println(entry.getKey() + ": " + entry.getValue() + "$ (" + count + ")");
             }
-            System.out.println("Total Payment: " +user.getBill().getTotal());
+            System.out.println("Total Payment: " +user.getBill().getTotal() +"$");
             System.out.println("\n--------------------------\n");
             for(FastFood f: user.getFood()){
                 f.performCook();

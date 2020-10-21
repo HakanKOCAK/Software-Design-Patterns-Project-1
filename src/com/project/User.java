@@ -32,6 +32,7 @@ public class User implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        Bill observer = (Bill) o;
+        System.out.println("Total Payment: " + observer.getTotal() + "$");
     }
 }

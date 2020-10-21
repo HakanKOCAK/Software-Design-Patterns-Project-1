@@ -16,9 +16,13 @@ public class Bill extends Observable {
         details = new HashMap<>();
     }
 
-    public void addToBill(FastFood food) throws InterruptedException{
+    public void addToBill(FastFood food){
         this.total = this.getTotal() + food.getPrice();
-        details.put(food.toString(), food.getPrice());
+        float price = food.getPrice();
+        if (details.containsKey(food.toString())){
+            price += details.get(food.toString());
+        }
+        details.put(food.toString(), price);
         setChanged();
         notifyObservers();
     }
