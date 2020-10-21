@@ -1,6 +1,8 @@
 package com.project.CookBehavior;
 
-public abstract class CookBehavior {
+import java.util.Observable;
+
+public abstract class CookBehavior extends Observable {
     String status = "Awaiting";
 
     public abstract void cook(String food) throws InterruptedException;
@@ -10,6 +12,8 @@ public abstract class CookBehavior {
     public void SetStatus(String status)
     {
         this.status = status;
+        setChanged();
+        notifyObservers();
     }
     public String GetStatus(){
         return status;
