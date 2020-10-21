@@ -5,8 +5,10 @@ import com.project.FastFood.FastFood;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class User{
+public class User implements Observer {
     private List<FastFood> order;
     private Bill bill;
 
@@ -26,5 +28,10 @@ public class User{
 
     public Bill getBill(){
         return this.bill;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
