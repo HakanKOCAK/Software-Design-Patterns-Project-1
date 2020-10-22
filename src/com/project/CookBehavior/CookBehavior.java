@@ -3,19 +3,19 @@ package com.project.CookBehavior;
 import java.util.Observable;
 
 public abstract class CookBehavior extends Observable {
-    String status = "Awaiting";
+    protected String status = "Awaiting";
 
     public abstract void cook(String food) throws InterruptedException;
     public abstract void display();
     public abstract String toString();
 
-    public void SetStatus(String status)
+    public void setStatus(String status)
     {
         this.status = status;
         setChanged();
         notifyObservers();
     }
-    public String GetStatus(){
+    public String getStatus(){
         return status;
     }
 }

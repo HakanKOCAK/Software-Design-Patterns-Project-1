@@ -5,11 +5,11 @@ import java.util.concurrent.TimeUnit;
 public class CookOnGrill extends CookBehavior{
     @Override
     public void cook(String food) throws InterruptedException {
-        SetStatus("Your " + food + " is cooking on the grille");
+        setStatus("Your " + food + " is cooking on the grille");
         TimeUnit.SECONDS.sleep(1);
-        SetStatus("Cooking is finished, your " + food + " is ready for packaging...");
+        setStatus("Cooking is finished, your " + food + " is ready for packaging...");
         TimeUnit.SECONDS.sleep(1);
-        SetStatus("Package is ready, enjoy your " + food + ".");
+        setStatus("Package is ready, enjoy your " + food + ".");
     }
 
     @Override

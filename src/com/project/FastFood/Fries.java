@@ -50,7 +50,7 @@ public class Fries extends FastFood {
     @Override
     public void update(Observable o, Object arg) {
         CookBehavior observer = (CookBehavior) o;
-        System.out.println(observer.GetStatus());
+        System.out.println(observer.getStatus());
     }
 
     @Override
