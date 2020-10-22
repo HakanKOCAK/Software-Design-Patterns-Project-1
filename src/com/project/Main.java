@@ -17,7 +17,6 @@ public class Main {
         int i = 0;
         User user = new User();
         FastFood food;
-        user.getBill().addObserver(user);
 
         System.out.println("Welcome to the FastFood Store!\n---------------------------------\n");
         System.out.println("0 Exit");
@@ -63,7 +62,6 @@ public class Main {
             }
             food.setCookBehavior(possibleCookingTypes.get(cookBehavior-1));
             System.out.format("%s %s", "Your "+food.toString(), "will be cooked in/on the " + food.getCookBehavior().toString()+"\n");
-            food.getCookBehavior().addObserver(food);
             user.addFood(food);
 
             System.out.println("\nDo you want anything else?");

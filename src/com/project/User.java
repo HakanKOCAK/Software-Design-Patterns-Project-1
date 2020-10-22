@@ -13,8 +13,9 @@ public class User implements Observer {
     private Bill bill;
 
     public User(){
-        order = new ArrayList<>();
-        bill = new Bill();
+        this.order = new ArrayList<>();
+        this.bill = new Bill();
+        this.bill.addObserver(this);
     }
 
     public void addFood(FastFood food) throws InterruptedException {

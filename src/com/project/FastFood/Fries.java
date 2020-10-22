@@ -35,6 +35,7 @@ public class Fries extends FastFood {
     @Override
     public void setCookBehavior(CookBehavior cb) {
         this.cookingBehavior=cb;
+        this.cookingBehavior.addObserver(this);
     }
 
     @Override
