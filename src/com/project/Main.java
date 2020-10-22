@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        int choice = 0;
-        int i = 0;
+        int choice;
+        int i;
         User user = new User();
         FastFood food;
 
@@ -29,48 +29,46 @@ public class Main {
             choice = sc.nextInt();
 
             if(choice == 0) break;
+            else if(choice < 4){
+                if (choice == 1){
+                    food = new Pizza();
+                } else if (choice == 2){
+                    food = new Hamburger();
+                } else {
+                    food = new Fries();
+                }
 
-            while (choice < 1 || choice > 3){
-                System.out.format("%s ","What would you like to eat?(1, 2 or 3)");
-                choice = sc.nextInt();
-            }
-
-            if (choice == 1){
-                food = new Pizza();
-            } else if (choice == 2){
-                food = new Hamburger();
-            } else {
-                food = new Fries();
-            }
-
-            System.out.format("%s ","Nice choice!!!");
-            food.display();
-            System.out.println("\nHow would you like your "+food.toString()+" to be cooked");
-
-            List<CookBehavior> possibleCookingTypes = food.getPossibleCookingTypes();
-
-            for(i=0; i<possibleCookingTypes.toArray().length; i++){
-                System.out.format("%s ", i+1);
-                possibleCookingTypes.get(i).display();
-            }
-
-            int cookBehavior = 0;
-            cookBehavior = sc.nextInt();
-            while (cookBehavior < 1 || cookBehavior > possibleCookingTypes.toArray().length){
+                System.out.format("%s ","Nice choice!!!");
+                food.display();
                 System.out.println("\nHow would you like your "+food.toString()+" to be cooked");
+
+                List<CookBehavior> possibleCookingTypes = food.getPossibleCookingTypes();
+
+                for(i=0; i<possibleCookingTypes.toArray().length; i++){
+                    System.out.format("%s ", i+1);
+                    possibleCookingTypes.get(i).display();
+                }
+
+                int cookBehavior;
                 cookBehavior = sc.nextInt();
+                while (cookBehavior < 1 || cookBehavior > possibleCookingTypes.toArray().length){
+                    System.out.println("\nHow would you like your "+food.toString()+" to be cooked");
+                    cookBehavior = sc.nextInt();
+                }
+                food.setCookBehavior(possibleCookingTypes.get(cookBehavior-1));
+                System.out.format("%s %s", "Your "+food.toString(), "will be cooked in/on the " + food.getCookBehavior().toString()+"\n");
+                user.addFood(food);
+
+                System.out.println("\nDo you want anything else?");
+                System.out.println("0 Exit");
+                System.out.println("1 Pizza");
+                System.out.println("2 Hamburger");
+                System.out.println("3 Fries\n");
+            } else {
+                System.out.println("What would you like to eat? (1, 2, 3)");
             }
-            food.setCookBehavior(possibleCookingTypes.get(cookBehavior-1));
-            System.out.format("%s %s", "Your "+food.toString(), "will be cooked in/on the " + food.getCookBehavior().toString()+"\n");
-            user.addFood(food);
 
-            System.out.println("\nDo you want anything else?");
-            System.out.println("0 Exit");
-            System.out.println("1 Pizza");
-            System.out.println("2 Hamburger");
-            System.out.println("3 Fries\n");
-
-        } while (choice > 0 && choice < 4);
+        } while (choice > 0);
 
 
         if(user.getFood().toArray().length > 0){
@@ -81,7 +79,7 @@ public class Main {
             float hamburgerPrice = new Hamburger().getPrice();
             float friesPrice = new Fries().getPrice();
             for(Map.Entry<String, Float> entry: details.entrySet()){
-                float price = 0;
+                float price;
                 if (entry.getKey().equalsIgnoreCase("pizza")){
                     price = pizzaPrice;
                 } else if (entry.getKey().equalsIgnoreCase("fries")){
