@@ -11,8 +11,8 @@ public class Hamburger extends FastFood {
 
     public Hamburger(){
         price = (float) 10.50;
-        cbList.add(new CookOnGrill());
-        cbList.add(new CookInPan());
+        possibleCookingTypes.add(new CookOnGrill());
+        possibleCookingTypes.add(new CookInPan());
     }
 
     @Override
@@ -33,17 +33,17 @@ public class Hamburger extends FastFood {
 
     @Override
     public void setCookBehavior(CookBehavior cb) {
-        this.cb = cb;
+        this.cookingBehavior = cb;
     }
 
     @Override
     public CookBehavior getCookBehavior() {
-        return this.cb;
+        return this.cookingBehavior;
     }
 
     @Override
-    public List<CookBehavior> getCookBehaviors() {
-        return this.cbList;
+    public List<CookBehavior> getPossibleCookingTypes() {
+        return this.possibleCookingTypes;
     }
 
     @Override

@@ -12,9 +12,9 @@ public class Fries extends FastFood {
 
     public Fries(){
         price = (float) 4.50;
-        cbList.add(new CookInOwen());
-        cbList.add(new CookInPan());
-        cbList.add(new CookInFryer());
+        possibleCookingTypes.add(new CookInOwen());
+        possibleCookingTypes.add(new CookInPan());
+        possibleCookingTypes.add(new CookInFryer());
     }
 
     @Override
@@ -34,17 +34,17 @@ public class Fries extends FastFood {
 
     @Override
     public void setCookBehavior(CookBehavior cb) {
-        this.cb=cb;
+        this.cookingBehavior=cb;
     }
 
     @Override
     public CookBehavior getCookBehavior() {
-        return this.cb;
+        return this.cookingBehavior;
     }
 
     @Override
-    public List<CookBehavior> getCookBehaviors() {
-        return this.cbList;
+    public List<CookBehavior> getPossibleCookingTypes() {
+        return this.possibleCookingTypes;
     }
 
     @Override

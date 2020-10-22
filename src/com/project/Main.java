@@ -48,20 +48,20 @@ public class Main {
             food.display();
             System.out.println("\nHow would you like your "+food.toString()+" to be cooked");
 
-            List<CookBehavior> cbList = food.getCookBehaviors();
-            i = 0;
-            for(i=0; i<cbList.toArray().length; i++){
+            List<CookBehavior> possibleCookingTypes = food.getPossibleCookingTypes();
+
+            for(i=0; i<possibleCookingTypes.toArray().length; i++){
                 System.out.format("%s ", i+1);
-                cbList.get(i).display();
+                possibleCookingTypes.get(i).display();
             }
 
             int cookBehavior = 0;
             cookBehavior = sc.nextInt();
-            while (cookBehavior < 1 || cookBehavior > cbList.toArray().length){
+            while (cookBehavior < 1 || cookBehavior > possibleCookingTypes.toArray().length){
                 System.out.println("\nHow would you like your "+food.toString()+" to be cooked");
                 cookBehavior = sc.nextInt();
             }
-            food.setCookBehavior(cbList.get(cookBehavior-1));
+            food.setCookBehavior(possibleCookingTypes.get(cookBehavior-1));
             System.out.format("%s %s", "Your "+food.toString(), "will be cooked in/on the " + food.getCookBehavior().toString()+"\n");
             food.getCookBehavior().addObserver(food);
             user.addFood(food);
@@ -92,9 +92,9 @@ public class Main {
                     price = hamburgerPrice;
                 }
                 int count = (int) (entry.getValue()/price);
-                System.out.println(entry.getKey() + ": " + entry.getValue() + "$ (" + count + ")");
+                System.out.format("%s: %.2f$ (%d)\n", entry.getKey(), entry.getValue(), count);
             }
-            System.out.println("Total Payment: " +user.getBill().getTotal() +"$");
+            System.out.println("\nTotal Payment: " +user.getBill().getTotal() +"$");
             System.out.println("\n--------------------------\n");
             for(FastFood f: user.getFood()){
                 f.performCook();

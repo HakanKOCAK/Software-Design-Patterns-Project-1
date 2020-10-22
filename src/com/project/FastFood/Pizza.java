@@ -11,8 +11,8 @@ public class Pizza extends FastFood{
 
     public Pizza(){
        price = (float) 15.99;
-        cbList.add(new CookInOwen());
-        cbList.add(new CookInPan());
+        possibleCookingTypes.add(new CookInOwen());
+        possibleCookingTypes.add(new CookInPan());
     }
 
     @Override
@@ -32,17 +32,17 @@ public class Pizza extends FastFood{
 
     @Override
     public void setCookBehavior(CookBehavior cb) {
-        this.cb = cb;
+        this.cookingBehavior = cb;
     }
 
     @Override
     public CookBehavior getCookBehavior() {
-        return this.cb;
+        return this.cookingBehavior;
     }
 
     @Override
-    public List<CookBehavior> getCookBehaviors() {
-        return cbList;
+    public List<CookBehavior> getPossibleCookingTypes() {
+        return possibleCookingTypes;
     }
 
     @Override
