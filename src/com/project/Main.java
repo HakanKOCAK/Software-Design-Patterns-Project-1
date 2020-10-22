@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void program() throws InterruptedException {
         int choice;
         int i;
         User user = new User();
@@ -24,8 +24,8 @@ public class Main {
         System.out.println("2 Hamburger");
         System.out.println("3 Fries\n");
         System.out.println("What would you like to eat? ");
+        Scanner sc = new Scanner(System.in);
         do {
-            Scanner sc = new Scanner(System.in);
             choice = sc.nextInt();
 
             if(choice == 0) break;
@@ -98,5 +98,45 @@ public class Main {
         }
 
         System.out.println("\nSee you again!!!\n");
+    }
+
+    public static void sequenceDiagramExample() throws InterruptedException {
+        User user = new User();
+        FastFood food = new Pizza();
+        System.out.format("%s ","Nice choice!!!");
+        food.display();
+
+        System.out.println("\nHow would you like your "+food.toString()+" to be cooked");
+        List<CookBehavior> possibleCookingTypes = food.getPossibleCookingTypes();
+
+        for(int i=0; i<possibleCookingTypes.toArray().length; i++){
+            System.out.format("%s ", i+1);
+            possibleCookingTypes.get(i).display();
+        }
+
+        food.setCookBehavior(possibleCookingTypes.get(0));
+        System.out.format("%s %s", "Your "+food.toString(), "will be cooked in/on the " + food.getCookBehavior().toString()+"\n");
+        user.addFood(food);
+
+        System.out.println("\nOrder Details\n-------------------\n");
+        Map<String, Float> details = user.getBill().getDetails();
+
+        for(Map.Entry<String, Float> entry: details.entrySet()){
+            int count = (int) (entry.getValue()/food.getPrice());
+            System.out.format("%s: %.2f$ (%d)\n", entry.getKey(), entry.getValue(), count);
+        }
+        System.out.println("\nTotal Payment: " +user.getBill().getTotal() +"$");
+        System.out.println("\n--------------------------\n");
+        for(FastFood f: user.getFood()){
+            f.performCook();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        program();
+
+        // sequence diagram is drawn for the example program below. Please comment the function program()
+        // and run the function sequenceDiagramExample() below.
+        // sequenceDiagramExample();
     }
 }
